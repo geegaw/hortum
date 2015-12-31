@@ -4,7 +4,7 @@ var gulp = require("gulp");
 var eslint = require("gulp-eslint");
 
 var libDir = "./lib/**/*.js";
-var importDir = "import/**/*.js";
+var importDir = "./import/**/*.js";
 
 var DIRS = [
     libDir,
