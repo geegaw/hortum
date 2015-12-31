@@ -1,44 +1,51 @@
-var gulp = require("gulp");
+"use strict";
 
-var nodemon = require("gulp-nodemon");
-var jshint = require("gulp-jshint");
-var jscs = require("gulp-jscs");
+var gulp = require("gulp");
+var eslint = require("gulp-eslint");
+
+var libDir = "./lib/**/*.js";
+var importDir = "import/**/*.js";
+
+var DIRS = [
+    libDir,
+    importDir
+];
 
 gulp.task("lint", function () {
-  return gulp.src([
-    "import/**/*.js"
-  ])
-  .pipe(jshint())
-  .pipe(jshint.reporter("jshint-stylish", {verbose: true}))
-  .pipe(jshint.reporter("fail"))
-  .pipe(jscs({fix: true}))
-  .pipe(jscs.reporter())
-  .pipe(jscs.reporter("fail"))
-  .pipe(gulp.dest("src"));
+    return gulp.src(DIRS)
+          .pipe(eslint({
+            extends: "eslint:recommended",
+            ecmaFeatures: {
+                modules: true,
+                jsx: true,
+            },
+            rules: {
+                camelcase: 1,
+                quotes: [2, "double"],
+                "no-console": 0,
+                "comma-dangle": [2, "always-multiline"],
+            },
+            fix: true,
+            globals: {
+                jQuery:false,
+                "$":true,
+                Exception: true,
+            },
+            envs: [
+                "es6",
+                "amd",
+                "node",
+            ]
+        }))
+          .pipe(eslint.format())
+        .pipe(eslint.failAfterError()
+    );
 });
 
 gulp.task("watch", function () {
-  gulp.watch([
-    "import/**/*.js"
-  ],
-  [
-    "lint",
-  ]);
-
+  gulp.watch(DIRS,["lint"]);
 });
 
-/*
-gulp.task("server", function () {
-  nodemon({
-    script: "tryme.js",
-    ext: "js,json",
-    watch: [
-      "tryme.js"
-    ],
-    env: { "NODE_ENV": "development-local" }
-  });
-});
 
-gulp.task("default", ["server"]);
-*/
+gulp.task("default", ["watch"]);
 

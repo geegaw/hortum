@@ -14,9 +14,7 @@
   },
   "devDependencies": {
     "gulp": "3.9.0",
-    "gulp-jshint": "~1.11",
-    "gulp-jscs": "~3.0",
-    "jshint-stylish": "~2.0",
+    "gulp-eslint": "~1.1",
     "mongo-express": "~0.23"
   }
 }
