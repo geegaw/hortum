@@ -4,18 +4,22 @@
   "description": "Gardening database and resource",
   "author": "Christophe Vaugeois",
   "repository": "https://github.com/geegaw/hortum.git",
+  "license": "proprietary",
   "dependencies": {
-    "express": "~4.13.0",
-    "mongodb": "~2.0",
-    "request": "~2.64",
+    "cheerio": "~0.19",
+    "express": "~4.13",
+    "jsdom": "~7.2",
+    "jquery": "~2.1",
+    "mongodb": "~2.1",
     "q": "~1.4",
-    "jsdom": "3.1.2",
-    "jquery": "~1.11"
+    "request": "~2.67",
+    "underscore": "~1.8"
   },
   "devDependencies": {
     "gulp": "3.9.0",
     "gulp-jshint": "~1.11",
     "gulp-jscs": "~3.0",
-    "jshint-stylish": "~2.0"
+    "jshint-stylish": "~2.0",
+    "mongo-express": "~0.23"
   }
 }
