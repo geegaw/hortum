@@ -48,9 +48,9 @@ gulp.task("lint", function () {
 gulp.task("babel", function(){
     return gulp.src(DIRS)
         .pipe(babel({
-            presets: ['es2015']
+            presets: ["es2015"]
         }))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest("dist"));
 });
 
 gulp.task("watch", function () {
@@ -62,6 +62,10 @@ gulp.task("server", function(){
         script: "server.js",
         ext: "js html",
         env: { "NODE_ENV": "development" },
+        tasks: ["babel"],
+    })
+    .on("restart", function (){
+      console.log("restarted!");
     });
 });
 
