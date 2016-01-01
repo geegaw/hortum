@@ -1,12 +1,15 @@
 "use strict";
 
 var gulp = require("gulp");
+var babel = require("gulp-babel");
 var eslint = require("gulp-eslint");
+var nodemon = require("gulp-nodemon");
 
 var libDir = "./lib/**/*.js";
 var importDir = "./import/**/*.js";
 
 var DIRS = [
+    "server.js",
     libDir,
     importDir
 ];
@@ -42,10 +45,25 @@ gulp.task("lint", function () {
     );
 });
 
+gulp.task("babel", function(){
+    return gulp.src(DIRS)
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest('dist'));
+});
+
 gulp.task("watch", function () {
   gulp.watch(DIRS,["lint"]);
 });
 
+gulp.task("server", function(){
+    nodemon({
+        script: "server.js",
+        ext: "js html",
+        env: { "NODE_ENV": "development" },
+    });
+});
 
-gulp.task("default", ["watch"]);
+gulp.task("default", ["server"]);
 
