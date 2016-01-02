@@ -2,3 +2,4 @@ node_modules/*
 .project
 config.js
 dist/
+public/js/components/
