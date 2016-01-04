@@ -1,0 +1,90 @@
+<section class="mainInfo">
+
+    <div class="img">
+        <img src="<%=images.rhs%>" alt="image of plant" />
+    </div>
+
+    <div class="title">
+        <h1><%=names[0]%></h1>
+        <h2><%=title%></h2>
+        <h3><%=names[1]%></h3>
+        <h4><span>family:</span> <a href="/plant/family/<%=family%>"><%=family%></a></h4>
+    </div>
+
+</section>
+
+<section class="descriptionArea">
+    <div class="description">
+        <p><%=genus%></p>
+        <p><%=description%></p>
+    </div>
+</section>
+
+<section class="properties">
+    <div class="color">
+        <h4>Colors</h4>
+        <% _.each(color.colors, function(colour){ %>
+            <span style="background:<%=colour%>; width: 25px; height: 25px;display:block"><%=colour%></span>
+        <% }) %>
+        
+        <div class="moreInfo">
+            <div class="season">
+                <h4>By Season:</h4>
+                <% _.mapObject(color.seasons, function(colors, season){ %>
+                    <span><%=season%></span>
+                    <% _.each(colors, function(colour){ %>
+                        <span style="background:<%=colour%>; width: 25px; height: 25px;display:block"><%=colour%></span>
+                    <% }) %>
+                <% }) %>
+            </div>
+            <div class="attribute">
+                <h4>By Attribute:</h4>
+                <% _.mapObject(color.types, function(colors, season){ %>
+                    <span><%=season%></span>
+                    <% _.each(colors, function(colour){ %>
+                        <span style="background:<%=colour%>; width: 25px; height: 25px;display:block"><%=colour%></span>
+                    <% }) %>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+
+    <div class="sun">
+        <h4>Sun</h4><span><%=sunlight.sun%></span>
+        <div class="moreInfo">
+            <h5>Exposure</h5>
+            <span><%= sunlight.exposure.join(', ')%></span>
+            <h5>Aspect</h5>
+            <span><%= sunlight.aspect.join(', ')%></span>
+        </div>
+    </div>
+
+    <div class="soil">
+        <h4>Soil</h4>
+        <% _.mapObject(soil, function(info, label){ %>
+            <h5><%= label%></h5>
+            <span><%= info.join(', ')%></span>
+        <% }) %>
+    </div>
+
+    <div class="size">
+        <h4>Size</h4>
+        <% _.mapObject(size, function(info, label){ %>
+            <h5><%= label%></h5>
+            <span><%=info%></span>
+        <% }) %>
+    </div>
+
+</section>
+
+<section class="maintenance">
+    <% _.mapObject(howTo, function(sectionInfo, sectionTitle){ %>
+        <div class="sectionTitle">
+            <h4><%= sectionTitle %></h4>
+            <% _.mapObject(sectionInfo, function(info, heading){ %>
+                <h5><%= heading %></h5>
+                <p><%= info %></p>
+            <% }) %>
+        </div>
+    <% }) %>
+</section>

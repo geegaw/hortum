@@ -1,0 +1,17 @@
+<ul class="plants">
+    <% _.each(plants, function(plant){%>
+        <li class="mainInfo">
+            <div class="img">
+                <% if (typeof(plant.images) !== "undefined" && typeof(plant.images.rhs) !== "undefined" && plant.images.rhs !== null) { %>
+                    <img src="<%=plant.images.rhs%>" alt="image of plant" />
+                <% } %>
+            </div>
+            <div class="title">
+                <h1><%=plant.names[0]%></h1>
+                <h2><%=plant.title%></h2>
+                <h3><%=plant.names[1]%></h3>
+                <h4><span>family:</span> <a href="/plant/family/<%=plant.family%>"><%=plant.family%></a></h4>
+            </div>
+        </li>
+    <% }) %>
+</ul>

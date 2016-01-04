@@ -3,14 +3,16 @@ require("babel-polyfill");
 
 var express = require("express");
 var plantRouter = require("./lib/routes/plant");
-var path = require('path');
+var plantsRouter = require("./lib/routes/plants");
+var path = require("path");
 
 var app = express();
 var port = process.env.PORT || 3000;
 
-app.use(express.static('public/css'));
-app.use(express.static('public/js'));
-app.use("/plant", plantRouter);
+app.use("/css", express.static("public/css"));
+app.use("/js", express.static("public/js"));
+app.use("/api/plant", plantRouter);
+app.use("/api/plants", plantsRouter);
 app.get("*", function(req, res){
     res.sendFile(path.join(__dirname + "/public/index.html"));
 });
