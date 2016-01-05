@@ -1,0 +1,171 @@
+@import "config/vars";
+@import "config/mixins";
+
+section{
+  display: inline-block;
+}
+
+.mainInfo{
+  width: 100%;
+}
+
+@imgW: 25%;
+.img{
+  width: @imgW;
+  float: left;
+}
+
+.img img{
+  width: 100%;
+  height: auto;
+}
+
+.title{
+  width: 100% - @imgW;
+  float: left;
+  padding: 0 20px;
+}
+
+.title h2,
+.title h3,
+.title h4{
+  margin-top: 10px;
+}
+
+.plant-info{
+  width: 100% - @imgW;
+  float: left;
+  padding: 20px;
+}
+
+.plant-properties{
+  h4{
+    color: @darkColor;
+    font-weight: bold;
+    
+    span{
+
+      &::after{
+        font-family: fontAwesome;
+        content: '\f0fe';
+        font-size: @baseFont;
+        color: @complimentaryColor;
+      }
+
+      &:hover{
+        cursor: pointer;
+      }
+
+    }
+  }
+}
+
+.plant-properties__section{
+  float: left;
+  .thirdWidth;
+  padding: 10px;
+  
+}
+
+.properties__section__info{
+  float: left;
+  clear: both;
+  .fullWidth;
+  margin-bottom: 10px;
+  
+  &:first-of-type{
+    margin-top: 15px;
+  }
+
+  h5{
+    font-weight: bold;
+    font-size: @smallFont;
+    display: inline-block;
+    color: @complimentaryColor;
+  }
+  
+  span{
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+}
+
+.colors__color{
+  float: left;
+  margin-right: 5px;
+  width: 25px;
+  height: 25px;
+  display: block;
+  text-indent: -99999px;
+}
+
+.sunlight{
+  font-size: @hugeFont;
+  position: relative;
+
+  i span{
+    border-radius: 50%;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 8px;
+    left: 5px;
+  }
+
+  & .full{
+    color: @accentColor;
+    span{  background: @accentColor; }
+  }
+
+  &.partial{
+    color: @accentColor;
+    span{  background: linear-gradient(@accentColor, #fff); }
+  }
+
+  &.shade{
+    color: @greyColor;
+    span{  background: @greyColor; }
+  }
+}
+
+.description{
+  .halfWidth;
+  padding-right: 5%;
+  padding-top: 20px;
+  float: left;
+  clear: left;
+}
+
+.maintenance{
+  .halfWidth;
+  float: left;
+}
+
+.sectionTitle{
+  margin-top: 30px;
+  
+  &:first-child{
+    margin-top: 0;
+  }
+   
+  h4{
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+  }
+}
+
+.sectionTitle_info{
+  
+  h5{
+    font-weight: bold;
+    font-size: @smallFont;
+    display: inline-block;
+    color: @complimentaryColor;
+  }
+  p{
+    display: inline-block;
+    margin-left: 10px;
+  }
+}

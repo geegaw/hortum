@@ -1,0 +1,26 @@
+*{ box-sizing: border-box; }
+.hide{ display: none; }
+
+body{
+  width: 100%;
+  font-family: @mainFont;
+}
+
+main{ padding: 0 2%; }
+
+h1{ font-size: @hugeFont; color: @darkColor; font-weight: bold; }
+h2{ font-size: @largeFont; }
+h3{ font-size: @mediumFont; }
+h4,h5{ font-size: @baseFont; }
+
+a{ color: @darkColor; &:hover{ color: @complimentaryColor}}
+p{ 
+  line-height: @baseFont + 6px;
+  margin-top: 10px;
+
+  &:first-child{
+    margin-top: 0;
+  }
+}
+
+.clear{ clear: both; }

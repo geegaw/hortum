@@ -7,8 +7,8 @@
                 <% } %>
             </div>
             <div class="title">
-                <h1><%=plant.names[0]%></h1>
-                <h2><%=plant.title%></h2>
+                <h1><a href="/plant/<%=plant._id%>/<%=plant.title%>"><%=plant.names[0]%></a></h1>
+                <h2><a href="/plant/<%=plant._id%>/<%=plant.title%>"><%=plant.title%></a></h2>
                 <h3><%=plant.names[1]%></h3>
                 <h4><span>family:</span> <a href="/plant/family/<%=plant.family%>"><%=plant.family%></a></h4>
             </div>

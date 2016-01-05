@@ -3,12 +3,13 @@ define([
     "jquery",
     "underscore",
     'backbone',
+    'loadCSS', 
     '../collections/plants',
     "views/components/pagination",
     'text!templates/family.html',
     'text!templates/plant-info.html'
 ],
-function($, _, Backbone, Plants, PaginationView, familyTemplate, plantInfoTemplate){
+function($, _, Backbone, loadCSS, Plants, PaginationView, familyTemplate, plantInfoTemplate){
     var FamilyView = Backbone.View.extend({
         el: 'main',
         template: _.template(familyTemplate),
@@ -17,6 +18,7 @@ function($, _, Backbone, Plants, PaginationView, familyTemplate, plantInfoTempla
             _.bindAll(this, 'renderPlantResults');
         },
         render: function(){
+            loadCSS("/css/plants.css");
             this.$el.html(this.template({
                 family: this.collection.family
             }));

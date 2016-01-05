@@ -4,6 +4,8 @@ var gulp = require("gulp");
 var babel = require("gulp-babel");
 var concat = require("gulp-concat");
 var eslint = require("gulp-eslint");
+var less = require("gulp-less");
+var minifyCSS = require("gulp-minify-css");
 var nodemon = require("gulp-nodemon");
 
 var libDir = "./lib/**/*.js";
@@ -20,9 +22,21 @@ var PUBLIC = "./public";
 
 var PUBLIC_JS = PUBLIC + "/js";
 var PUBLIC_JS_COMPONENTS = PUBLIC_JS + "/components";
+var PUBLIC_JS_FILES = PUBLIC_JS + "/**/*.js";
 
 var PUBLIC_CSS = PUBLIC + "/css";
 
+var PUBLIC_LESS = PUBLIC + "/less";
+var PUBLIC_LESS_FILES = PUBLIC_LESS + "/**/*.less"; 
+
+var WATCH_PUBLIC = [ PUBLIC_JS_FILES, PUBLIC_LESS_FILES, !PUBLIC_JS_COMPONENTS+"/**/*.js" ];
+
+gulp.task("stylesheets", function () {
+    gulp.src(PUBLIC_LESS + "/*.less")
+        .pipe(less())
+        .pipe(minifyCSS())
+        .pipe(gulp.dest(PUBLIC_CSS));
+});
 
 gulp.task("lint", function () {
     return gulp.src(SERVER_DIRS)
@@ -50,7 +64,7 @@ gulp.task("lint", function () {
                 "node",
             ]
         }))
-          .pipe(eslint.format())
+        .pipe(eslint.format())
         .pipe(eslint.failAfterError()
     );
 });
@@ -69,8 +83,12 @@ gulp.task("concat-components", function() {
     .pipe(gulp.dest(PUBLIC_JS_COMPONENTS+"/"));
 });
 
-gulp.task("watch", function () {
-  gulp.watch(SERVER_DIRS,["lint"]);
+gulp.task("watch-server", function () {
+  gulp.watch(SERVER_DIRS,[]);
+});
+
+gulp.task("watch-public", function () {
+  gulp.watch(WATCH_PUBLIC,["stylesheets"]);
 });
 
 gulp.task("server", function(){
@@ -78,8 +96,9 @@ gulp.task("server", function(){
         script: "server.js",
         ext: "js html",
         env: { "NODE_ENV": "development" },
-        tasks: ["babel"],
     })
+    .on('start', ["watch-public", "watch-server"])
+    .on('change', ["watch-public", "watch-server"])
     .on("restart", function (){
       console.log("restarted!");
     });
