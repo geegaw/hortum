@@ -97,8 +97,8 @@ function savePlant(plant){
         util.log("\t[checking md5] "+plant.ids.rhs.id+": "+plant.title+"\n");
         plantsCollection.find({ "ids.rhs.id": plant.ids.rhs.id })
           .then(function(docs){
-            var md5_plant = delete( plant.ids.rhs.cid );
-            var md5 = util.md5( JSON.stringify(md5_plant));
+            var md5Plant = delete( plant.ids.rhs.cid );
+            var md5 = util.md5( JSON.stringify(md5Plant));
             if ( docs.length ){
                 plant._id = docs[0]._id;
                 util.log("\t[found] "+plant.ids.rhs.id+": "+plant.title+" -- "+docs[0]._id+"\n");
