@@ -2,6 +2,7 @@
 require("babel-polyfill");
 
 var express = require("express");
+var morgan = require("morgan");
 var plantRouter = require("./lib/routes/plant");
 var plantsRouter = require("./lib/routes/plants");
 var path = require("path");
@@ -9,6 +10,7 @@ var path = require("path");
 var app = express();
 var port = process.env.PORT || 3000;
 
+app.use(morgan("dev"));
 app.use("/css", express.static("public/css"));
 app.use("/js", express.static("public/js"));
 app.use("/api/plant", plantRouter);
