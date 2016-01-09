@@ -1,4 +1,27 @@
-.pagination li{
+.pagination{
+  width: 100%;
+  font-size: 1em;
+  color: @darkColor;
+  clear: both;
+
+  li{
     float: left;
     margin-left: 5px;
+
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+
+  button{
+    border-radius: 5px;
+    background: @complimentaryColor;
+    color: @greyColor;
+    padding: 4px 6px;
+    font-size: 1em;
+
+    &.active, &:hover{
+      background: @darkColor;
+    }
+  }
 }

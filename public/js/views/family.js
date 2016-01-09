@@ -18,7 +18,7 @@ function($, _, Backbone, loadCSS, Plants, PaginationView, familyTemplate, plantI
             _.bindAll(this, 'renderPlantResults');
         },
         render: function(){
-            loadCSS("/css/plants.css");
+            loadCSS("/css/family.css");
             this.$el.html(this.template({
                 family: this.collection.family
             }));

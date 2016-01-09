@@ -4,7 +4,7 @@
             <button type="button" class="prev <% if ( curPage === 0 ){ %>hide<% } %>" data-page=<%= (curPage - 1) %>>&lt;</button>
         </li>
         <li>
-            <button type="button" class="first <% if ( curPage === 0 ){ %>hide<% } %>" data-page=0>1</button>
+            <button type="button" class="first <%if ( curPage === 0 ){%>active<% } %>" data-page=0>1</button>
         </li>
         <% if ( start > 1 ){ %>
             <li><span>...</span></li>
@@ -18,10 +18,10 @@
             <li><span>...</span></li>
         <% } %>
         <li>
-            <button type="button" class="last" data-page=<%= (pages - 1) %>><%= pages %></button>
+            <button type="button" class="last <%if ( curPage === (pages - 1) ){%>active<% } %>" data-page=<%= (pages - 1) %>><%= pages %></button>
         </li>
         <li>
-            <button type="button" class="next<% if ( curPage >= pages ){ %>hide<% } %>" data-page=<%= (curPage + 1) %>>&gt;</button>
+            <button type="button" class="next <% if ( curPage >= (pages - 1) ){ %>hide<% } %>" data-page=<%= (curPage + 1) %>>&gt;</button>
         </li>
     <% } %>
 </ul>

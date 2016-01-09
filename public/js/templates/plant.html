@@ -64,7 +64,9 @@
         <div class="plant-properties__section sun">
             <h4>Sun <span></span></h4>
             <span class="sunlight">
-                <i class="fa fa-sun-o <%= sunlight.sun %>"><span></span></i>
+                <% _.each(sunlight.sun, function(sun){ %>
+                    <i class="fa fa-sun-o <%= sun %>" title="<%= sun %>""><span></span></i>
+                <% }) %>
             </span>
 
             <div class="moreInfo hide">

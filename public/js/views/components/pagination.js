@@ -14,7 +14,7 @@ function($, _, Backbone, paginationTemplate){
         render: function(){
             var half = parseInt(this.numButtons / 2)
             var start = Math.max((this.curPage - half), 1);
-            var stop = Math.min(Math.max((this.curPage + half), (this.numButtons -1)), this.pages);
+            var stop = Math.min( Math.max((this.curPage + half), (this.numButtons - 1)), (this.pages - 2));
 
             this.$el.html(this.template({
                 curPage: this.curPage,

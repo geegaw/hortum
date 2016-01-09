@@ -102,15 +102,18 @@ section{
 
 .sunlight{
   font-size: @hugeFont;
-  position: relative;
 
-  i span{
-    border-radius: 50%;
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    top: 8px;
-    left: 5px;
+  i{
+    position: relative;
+
+    span{
+      border-radius: 50%;
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 4px;
+      left: 5px;
+    }
   }
 
   & .full{
@@ -118,14 +121,19 @@ section{
     span{  background: @accentColor; }
   }
 
-  &.partial{
+  & .partial{
     color: @accentColor;
     span{  background: linear-gradient(@accentColor, #fff); }
   }
 
-  &.shade{
+  & .shade{
     color: @greyColor;
     span{  background: @greyColor; }
+  }
+
+  & .partial.shade{
+    color: @greyColor;
+    span{  background: linear-gradient(45deg, @greyColor, #fff); }
   }
 }
 

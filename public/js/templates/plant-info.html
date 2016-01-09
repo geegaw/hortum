@@ -1,16 +1,18 @@
 <ul class="plants">
     <% _.each(plants, function(plant){%>
-        <li class="mainInfo">
-            <div class="img">
+        <li class="plants__mainInfo">
+            <div class="plants__img">
                 <% if (typeof(plant.images) !== "undefined" && typeof(plant.images.rhs) !== "undefined" && plant.images.rhs !== null) { %>
                     <img src="<%=plant.images.rhs%>" alt="image of plant" />
+                <% }else{ %>
+                    &nbsp;
                 <% } %>
             </div>
-            <div class="title">
-                <h1><a href="/plant/<%=plant._id%>/<%=plant.title%>"><%=plant.names[0]%></a></h1>
-                <h2><a href="/plant/<%=plant._id%>/<%=plant.title%>"><%=plant.title%></a></h2>
-                <h3><%=plant.names[1]%></h3>
-                <h4><span>family:</span> <a href="/plant/family/<%=plant.family%>"><%=plant.family%></a></h4>
+            <div class="plants__title">
+                <h2><a href="/plant/<%=plant._id%>/<%=plant.title%>"><%=plant.names[0]%></a></h2>
+                <h3><a href="/plant/<%=plant._id%>/<%=plant.title%>"><%=plant.title%></a></h3>
+                <h4><%=plant.names[1]%></h4>
+                <p><span>family:</span> <a href="/plant/family/<%=plant.family%>"><%=plant.family%></a></p>
             </div>
         </li>
     <% }) %>
