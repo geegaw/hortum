@@ -21,7 +21,7 @@ mongoDB.connect(dbUrl).then(function(){
 
 		var util404 = new Util404({
 			startFrom: lastKnownId,
-			increment: 100,
+			increment: 10000,
 			url: rhsUtil.endpoints.detail,
 		});
 	
