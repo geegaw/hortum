@@ -6,6 +6,12 @@ var config = {
 			plants: "plants",
 			rhs: "rhs",
 		}
+	},
+	es: {
+	    index: "hortum",
+	    types: {
+	        plant: "plant",
+	    }
 	}
 };
 
