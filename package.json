@@ -4,12 +4,13 @@
   "description": "Gardening database and resource",
   "author": "Christophe Vaugeois",
   "repository": "https://github.com/geegaw/hortum.git",
-  "license": "proprietary",
+  "license": "SEE LICENSE IN <LICENSE>",
   "dependencies": {
     "cheerio": "~0.19",
     "elasticsearch": "~10.1",
     "express": "~4.13",
     "mongodb": "~2.1",
+    "mongoose": "~4.3",
     "morgan": "~1.6",
     "request": "~2.67",
     "underscore": "~1.8"
