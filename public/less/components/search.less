@@ -1,0 +1,120 @@
+@import "plants";
+
+@asideW: 25%;
+
+.search{
+  .fullWidth;
+  
+}
+
+.search_query{
+  .width(20%);
+  float: right;
+  margin-bottom: 20px;
+  clear: both;
+  position: relative;
+
+  label{
+    display: none;
+  }
+
+}
+
+  .search_query_query_go{
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    
+    &:hover{
+      color: @darkColor;
+    }
+  }
+
+.search__filters{
+  .fullWidth;
+  border-bottom: 5px solid @accentColor;
+}
+
+.search__results{
+  .fullWidth;
+}
+
+.filter__filter__legend{
+  .width(10%);
+  font-weight: bold;
+  font-size: @mediumFont;
+}
+
+.filter__filters{
+  .width(90%);
+}
+
+@numCols: 5;
+@colMargin: 2%;
+@colW: (100 - (@numCols - 1) * @colMargin) / @numCols;
+
+.filter__filter{
+  .width(@colW);
+  margin-left: @colMargin;
+  position: relative;
+
+  &:nth-child( @{numCols}n - 1 ){
+    margin-left: 0;
+  }
+}
+
+  .filter__filter__image-label{
+    .width(auto);
+  }
+  
+  .filter__filter__image-label{
+    .width(auto);
+  }
+  
+  .filter__filter__label{
+    font-weight: bold;
+    font-size: @mediumFont;
+    margin-bottom: 10px;
+    color: @complimentaryColor;
+    padding-bottom: 5px;
+    .ucFirst();
+    
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  .filter__filter__facets{
+    .fullWidth;
+    padding: 20px;
+    background: @greyColor;
+    position: absolute;
+    top: 35px;
+    z-index: 10;
+  }
+
+    .filter__filter__facets_li{
+      margin-top: 5px;
+      .fullWidth;
+    }
+
+      .filter__filter__bucket{
+        .width(5%);
+        clear: none;
+        margin: 0;
+      }
+      
+      .filter__filter__facet_label{
+        .width(95%);
+        clear: none;
+      }
+
+      .filter__filter__facet_key{
+        .ucFirst();
+        margin-left: 10px;
+      }
+      .filter__filter__facet_count{
+        font-size: @smallFont;
+        color: @darkColor;
+        margin-left: 5px;
+      }

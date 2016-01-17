@@ -1,0 +1,39 @@
+<legend class="filter__filter__legend">Filters:</legend>
+<div class="filter__filters">
+    <section class="filter__filter">
+        <label class="filter__filter__label">Image</label>
+        <ul class="filter__filter__facets hide">
+            <li class="filter__filter__facets_li">
+                <input class="filter__filter__bucket filter__filter__image" type="checkbox" name="has-image" />
+                <label class="filter__filter__facet_label">
+                    <span class="filter__filter__facet_key">Has Image</span> 
+                    <span class="filter__filter__facet_count"><%= imageCount %></span>
+                </label>
+            </li>
+        </ul>
+    </section>
+    
+    <% _.each(facets, function(facet, label){  %>
+        <section class="filter__filter">
+            <label class="filter__filter__label"><%=label%></label>
+            <ul class="filter__filter__facets hide">
+            <% _.each(facet.buckets, function(bucket){  %>
+                <li class="filter__filter__facets_li">
+                    <input 
+                        class="filter__filter__bucket" 
+                        type="checkbox" 
+                        name="has-image" 
+                        data-facet="<%=label%>" 
+                        data-value="<%=bucket.key%>"
+                        <% if ( filters[label] && _.indexOf(filters[label], bucket.key) >= 0 ){ %>checked=checked<% } %> 
+                    />
+                    <label class="filter__filter__facet_label">
+                        <span class="filter__filter__facet_key"><%=bucket.key%></span> 
+                        <span class="filter__filter__facet_count"><%=bucket.doc_count%></span>
+                    </label>
+                </li>
+            <% }); %>
+            </ul>
+        </section>
+    <% }); %>
+</div>

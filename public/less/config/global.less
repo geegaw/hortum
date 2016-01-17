@@ -1,7 +1,7 @@
-*{ box-sizing: border-box; }
+*{ box-sizing: border-box; font-size: @baseFont; float: left;}
 .hide{ display: none; }
 
-body{
+html, body{
   width: 100%;
   font-family: @mainFont;
 }
@@ -22,5 +22,21 @@ p{
     margin-top: 0;
   }
 }
-button:hover{ cursor: pointer; }
+
+input[type=submit],
+button{
+  border: none;
+  background: transparent;
+  :hover{ cursor: pointer; }
+}
 .clear{ clear: both; }
+input,
+label{
+  .clear;
+  width: 100%;
+  display: block;
+}
+.hide{ display: none; }
+input[type=text]{
+  padding: 2px 4px;
+}
