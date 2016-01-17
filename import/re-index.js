@@ -73,7 +73,7 @@ function reindexSubset(page){
 
 function reindexPlant(plant){
     
-    return new Promise(function(resolve, reject){
+    return new Promise(function(resolve){
         es.index(config.es.types.plant, plant._id.toString(), plant)
         .then(function(){
             console.log("indexing: "+ plant._id.toString() + ' SUCCESS');

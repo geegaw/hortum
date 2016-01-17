@@ -84,7 +84,7 @@ gulp.task("concat-components", function() {
 });
 
 gulp.task("watch-server", function () {
-  gulp.watch(SERVER_DIRS,[]);
+  gulp.watch(SERVER_DIRS,["lint"]);
 });
 
 gulp.task("watch-public", function () {
@@ -94,14 +94,10 @@ gulp.task("watch-public", function () {
 gulp.task("server", function(){
     nodemon({
         script: "server.js",
-        ext: "js html",
+        ext: "js less html",
         env: { "NODE_ENV": "development" },
+        tasks: ["stylesheets", "lint"],
     })
-    .on('start', ["watch-public", "watch-server"])
-    .on('change', ["watch-public", "watch-server"])
-    .on("restart", function (){
-      console.log("restarted!");
-    });
 });
 
 gulp.task("default", ["server"]);
