@@ -4,3 +4,4 @@ config.js
 dist/
 public/js/components/
 public/css/
+data/
