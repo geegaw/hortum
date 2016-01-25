@@ -1,12 +1,18 @@
 "use strict";
 
+var _ = require("underscore");
 var util = require("../lib/utils/util");
 var RHSUtil = require("../lib/rhs/rhs-util");
 var MongoDB = require("../lib/mongo/mongo-db");
 var MongoCollection = require("../lib/mongo/mongo-collection");
 var config = require("../config");
+var Plant = require("../lib/models/plant");
 
 var dbUrl = config.db.url+":/"+config.db.port + "/hortum";
+
+var ES = require("../lib/elasticsearch/es");
+var es = new ES({index: config.es.index});
+
 var mongoDB = new MongoDB();
 var rhsUtil = new RHSUtil();
 var rhsCollection;
@@ -92,38 +98,37 @@ function handlePlant( plant ){
     });
 }
 
-function savePlant(plant){
+function savePlant(plantData){
     return new Promise(function(resolve, reject){
-        util.log("\t[checking md5] "+plant.ids.rhs.id+": "+plant.title+"\n");
-        plantsCollection.find({ "ids.rhs.id": plant.ids.rhs.id })
-          .then(function(docs){
-            var md5Plant = delete( plant.ids.rhs.cid );
+        util.log("\t[checking md5] "+plantData.ids.rhs.id+": "+plantData.title+"\n");
+        var plant = new Plant(plantsCollection, es);
+        plant.find({"ids.rhs.id": plantData.ids.rhs.id}).then(function(plant){
+            plant.data = _.extend(plant.data, plantData);
+            var md5Plant = delete( plantData.ids.rhs.cid );
             var md5 = util.md5( JSON.stringify(md5Plant));
-            if ( docs.length ){
-                plant._id = docs[0]._id;
-                util.log("\t[found] "+plant.ids.rhs.id+": "+plant.title+" -- "+docs[0]._id+"\n");
+            if ( plant._id ){
+                util.log("\t[found] "+plant.ids.rhs.id+": "+plant.title+" -- "+plant._id+"\n");
             }
 
-            if ( docs.length && docs[0].rhs && docs[0].rhs.md5 && docs[0].rhs.md5 === md5 ){
+            if ( plant.rhs && plant.rhs.md5 && plant.rhs.md5 === md5 ){
                 util.log("\t[no change] "+plant.ids.rhs.id+": "+plant.title+"\n");
                 resolve(true);
             }
             else{
-                plant.rhs = {
+                plant.data.rhs = {
                     md5: md5,
                 };
 
                 util.log("\t[saving] "+plant.ids.rhs.id+": "+plant.title+"\n");
-                plantsCollection.save(plant).then(function(result){
+                plant.save(plant).then(function(){
                     util.log("\t[save complete] "+plant.ids.rhs.id+": "+plant.title+"\n");
-                    resolve(result);
+                    resolve(true);
                 }).catch(function(err){
                     reject(["SavePlant--save "+plant.ids.rhs.id+": "+plant.title, err]);
                 });
             }
-            docs = null;
         }).catch(function(err){
-            reject(["SavePlant--find "+plant.ids.rhs.id+": "+plant.title, err]);
+            reject(["SavePlant--find "+plantData.ids.rhs.id+": "+plantData.title, err]);
         });
     });
 }
